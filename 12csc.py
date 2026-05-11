@@ -115,3 +115,24 @@ class QuizApp:
     def clear(self):
         for w in self.root.winfo_children():
             w.destroy()
+
+
+# start screen
+    def start_screen(self):
+        self.clear()
+
+
+        frame = tk.Frame(self.root, bg=BG)
+        frame.pack(expand=True)
+
+
+        tk.Label(frame, text="Welcome to the", fg=WHITE, bg=BG,
+                 font=("Arial", 28)).pack()
+
+
+        tk.Label(frame, text="Ultimate Car Quiz", fg=WHITE, bg=BG,
+                 font=("Arial", 32, "bold", "underline")).pack(pady=10)
+
+
+        tk.Label(frame, text="Enter your username:", fg="#ccc", bg=BG,
+                 font=("Arial", 16)).pack(pady=20)
