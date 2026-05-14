@@ -136,3 +136,19 @@ class QuizApp:
 
         tk.Label(frame, text="Enter your username:", fg="#ccc", bg=BG,
                  font=("Arial", 16)).pack(pady=20)
+
+self.entry = tk.Entry(frame, font=("Arial", 14), justify="center", width=25)
+        self.entry.pack(ipady=5)
+
+
+        self.rounded_button(frame, "Start Quiz", self.start_quiz)
+
+
+    def start_quiz(self):
+        self.username = self.entry.get()
+        if not self.username:
+            return
+        self.q_index = 0
+        self.score = 0
+        self.answers = []
+        self.quiz_screen()
