@@ -107,8 +107,25 @@ class QuizApp:
         self.entry = tk.Entry(frame, font=("Arial", 14), justify="center", width=25)
         self.entry.pack(ipady=5)
 
-        # Insert the default text inside the Entry box
-        self.entry.insert(0, "Enter Your Username:")
+        # Fancy text placeholder for entering username
+        placeholder = "Enter Your Username:"
+
+        self.entry.insert(0, placeholder)
+        self.entry.config(fg="grey")
+
+        def on_focus_in(event):
+            if self.entry.get() == placeholder:
+                self.entry.delete(0, tk.END)
+                self.entry.config(fg="black")
+
+        def on_focus_out(event):
+            if self.entry.get() == "":
+                self.entry.insert(0, placeholder)
+                self.entry.config(fg="grey")
+
+        self.entry.bind("<FocusIn>", on_focus_in)
+        self.entry.bind("<FocusOut>", on_focus_out)
+
         self.rounded_button(frame, "Start Quiz", self.start_quiz)
 
 
@@ -179,7 +196,8 @@ class QuizApp:
 
     def load_q(self):
         q = quiz_data[self.q_index]
-        self.q_label.config(text=f"Question {self.q_index+1} of 10")
+        # self.q_label.config(text=f"Question {self.q_index+1} of 10")
+        self.q_label.config(text=f"Question {self.q_index+1} of 10 \n {quiz_data[self.q_index]["q"]}")
 
 
         self.selected.set(None)
