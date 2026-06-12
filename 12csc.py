@@ -1,5 +1,5 @@
 import tkinter as tk
-
+from PIL import Image, ImageTk
 
 # questions
 quiz_data = [
@@ -11,7 +11,7 @@ quiz_data = [
     {"q": "What is a Dipstick used for?", "options": ["To check coolant levels", "To check oil levels", "To jump start the car", "To check water tank levels"], "a": "To check oil levels"},
     {"q": "How do you know if you need to replace your coolant?", "options": ["When your dashboard says your car is overheating", "When your car dashboard displays TCL/TCS", "The temperature gauge on your dashboard rises", "When the car suddenly stops running"], "a": "The temperature gauge on your dashboard rises"},
     {"q": "When should you replace your car battery?", "options": ["When the lights start to go dim", "When you have hit the 5 year mark", "When your battery starts whistling high pitched noises", "If your headlights are way too bright at night”"], "a": "When the lights start to go dim"},
-    {"q": "Corolla maker?", "options": ["Honda", "Toyota", "Subaru", "Mazda"], "a": "Toyota"},
+    {"q": "How do you know if yo uneed to replace your oil", "options": ["If the dipstick turns black", "When your engine starts making knocking sounds", "The sticker on the windshield", "When the oil on the dip stick goes below the marked line"], "a": "When the oil on the dip stick goes below the marked line"},
     {"q": "What is the purpose of a muffler?", "options": ["Regulate exhaust flow", "Acts as a filter for solid parts to prevent solid parts entering the exhaust pipes of the vehicle.", "It is needed to prevent a car from overheating”", "Maximize engine power"], "a": "Regulate exhaust flow"}
 ]
 
