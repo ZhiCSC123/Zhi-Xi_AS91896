@@ -11,7 +11,7 @@ quiz_data = [
 
     {
         "q": "What section of a car is this?",
-        "image_path": r"C:\Users\23065\PyCharmMiscProject\IMAGE\wheel.png",
+        "image_path": r"C:\Users\23065\PyCharmMiscProject\IMAGE\rim.png",
         "options": ["Engine", "Accelerator", "Tyre", "Rim"],
         "a": "Rim"
     },
