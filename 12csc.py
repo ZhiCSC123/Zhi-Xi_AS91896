@@ -83,7 +83,11 @@ RED = "#e74c3c"
 WHITE = "white"
 
 
+
+# app
 class QuizApp:
+
+# sets up the start screen
 
     def __init__(self, root):
         self.root = root
@@ -98,6 +102,9 @@ class QuizApp:
 
         self.start_screen()
 
+        # ui
+        #makes a custom button
+
     def rounded_button(self, parent, text, command, width=220):
         canvas = tk.Canvas(parent, width=width, height=45, bg=BG, highlightthickness=0)
         canvas.pack(pady=8)
@@ -109,6 +116,8 @@ class QuizApp:
 
         return canvas
 
+    # the progression bar
+
     def progress_bar(self, parent):
         self.pb_canvas = tk.Canvas(parent, width=600, height=30, bg=BG, highlightthickness=0)
         self.pb_canvas.pack(pady=20)
@@ -116,15 +125,20 @@ class QuizApp:
         self.pb_canvas.create_rectangle(0, 10, 600, 25, fill="#999", outline="")
         self.progress_fill = self.pb_canvas.create_rectangle(0, 10, 0, 25, fill=GREEN, outline="")
 
+    # makes the progression bar fill up and update as the quiz continues
+
     def update_progress(self):
         progress = self.q_index / len(quiz_data)
         width = int(600 * progress)
         self.pb_canvas.coords(self.progress_fill, 0, 10, width, 25)
 
+
+    # clears the screen
     def clear(self):
         for w in self.root.winfo_children():
             w.destroy()
 
+    # start screen
     def start_screen(self):
         self.clear()
 
@@ -137,6 +151,8 @@ class QuizApp:
         self.entry = tk.Entry(frame, font=("Arial", 14), justify="center", width=25)
         self.entry.pack(ipady=5)
 
+
+        # placeholder username for entering the user's username
         placeholder = "Enter Your Username:"
         self.entry.insert(0, placeholder)
         self.entry.config(fg="grey")
@@ -149,6 +165,8 @@ class QuizApp:
 
         self.rounded_button(frame, "Start Quiz", self.start_quiz)
 
+    # start quiz
+
     def start_quiz(self):
         self.username = self.entry.get()
 
@@ -159,6 +177,8 @@ class QuizApp:
         self.score = 0
         self.answers = []
 
+
+        #main page
         self.quiz_screen()
 
     def quiz_screen(self):
@@ -174,12 +194,16 @@ class QuizApp:
         main = tk.Frame(self.root, bg=BG)
         main.pack(expand=True)
 
+        # area for where the image is placed
+
         left = tk.Frame(main, bg=CARD, width=400, height=250)
         left.pack(side="left", padx=20)
         left.pack_propagate(False)
 
         self.image_label = tk.Label(left, bg=CARD)
         self.image_label.pack(expand=True)
+
+        # the answer buttons for the questions
 
         right = tk.Frame(main, bg=BG)
         right.pack(side="left", padx=20)
@@ -208,6 +232,7 @@ class QuizApp:
 
         self.load_q()
 
+    #loads the questions
     def load_q(self):
         q = quiz_data[self.q_index]
 
@@ -233,7 +258,7 @@ class QuizApp:
             self.option_buttons[i].config(text=opt, value=opt)
 
         self.update_progress()
-
+    # switches to the next question
     def next_q(self):
         if not self.selected.get():
             return
@@ -251,6 +276,7 @@ class QuizApp:
         else:
             self.result_screen()
 
+    # the results screen
     def result_screen(self):
         self.clear()
 
