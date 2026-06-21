@@ -11,55 +11,63 @@ quiz_data = [
 
     {
         "q": "What section of a car is this?",
-        "image_path": r"C:\Users\23065\PyCharmMiscProject\IMAGE\rock-hill-tires.jpg.jpg",
+        "image_path": r"C:\Users\23065\PyCharmMiscProject\IMAGE\wheel.png",
         "options": ["Engine", "Accelerator", "Tyre", "Rim"],
         "a": "Rim"
     },
 
     {
         "q": "What section of a car is this?",
+        "image_path": r"C:\Users\23065\PyCharmMiscProject\IMAGE\footbrake.png",
         "options": ["Brake", "Foot Brake", "Accelerator", "Hand Brake"],
         "a": "Foot Brake"
     },
 
     {
         "q": "What section of a car is this?",
+        "image_path": r"C:\Users\23065\PyCharmMiscProject\IMAGE\coolant.png",
         "options": ["Engine", "Accelerator", "Coolant Tank", "Oil Tank"],
         "a": "Coolant Tank"
     },
 
     {
         "q": "What section of a car is this?",
+        "image_path": r"C:\Users\23065\PyCharmMiscProject\IMAGE\oil.png",
         "options": ["Engine", "Coolant", "Oil Tank", "Dipstick"],
         "a": "Oil Tank"
     },
 
     {
         "q": "What is a Dipstick used for?",
+        "image_path": r"C:\Users\23065\PyCharmMiscProject\IMAGE\oildipstick.png",
         "options": ["To check coolant levels", "To check oil levels", "To jump start the car", "To check water tank levels"],
         "a": "To check oil levels"
     },
 
     {
         "q": "How do you know if you need to replace your coolant?",
+        "image_path": r"C:\Users\23065\PyCharmMiscProject\IMAGE\coolantlvls.png",
         "options": ["When your dashboard says your car is overheating", "When your car dashboard displays TCL/TCS", "The temperature gauge on your dashboard rises", "When the car suddenly stops running"],
         "a": "The temperature gauge on your dashboard rises"
     },
 
     {
         "q": "When should you replace your car battery?",
+        "image_path": r"C:\Users\23065\PyCharmMiscProject\IMAGE\carbat.png",
         "options": ["When the lights start to go dim", "When you have hit the 5 year mark", "When your battery starts whistling high pitched noises", "If your headlights are way too bright at night"],
         "a": "When the lights start to go dim"
     },
 
     {
         "q": "How do you know if you need to replace your oil",
+        "image_path": r"C:\Users\23065\PyCharmMiscProject\IMAGE\oilpour.png",
         "options": ["If the dipstick turns black", "When your engine starts making knocking sounds", "The sticker on the windshield", "When the oil on the dip stick goes below the marked line"],
         "a": "When the oil on the dip stick goes below the marked line"
     },
 
     {
         "q": "What is the purpose of a muffler?",
+        "image_path": r"C:\Users\23065\PyCharmMiscProject\IMAGE\muffler.png",
         "options": ["Regulate exhaust flow", "Acts as a filter...", "It is needed to prevent a car from overheating", "Maximize engine power"],
         "a": "Regulate exhaust flow"
     },
