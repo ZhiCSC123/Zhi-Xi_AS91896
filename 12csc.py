@@ -47,8 +47,8 @@ quiz_data = [
     {
         "q": "How do you know if you need to replace your coolant?",
         "image_path": r"C:\Users\23065\PyCharmMiscProject\IMAGE\coolantlvls.png",
-        "options": ["When your dashboard says your car is overheating", "When your car dashboard displays TCL/TCS", "The temperature gauge on your dashboard rises", "When the car suddenly stops running"],
-        "a": "The temperature gauge on your dashboard rises"
+        "options": ["Dashboard displays overheating symbol", "When the dashboard displays TCL/TCS", "Temperature on dashboard rises", "When the car stops running"],
+        "a": "Temperature on dashboard rises"
     },
 
     {
@@ -188,8 +188,8 @@ class QuizApp:
         top.pack(fill="x", pady=10)
 
         self.q_label = tk.Label(top, text="", fg=WHITE, bg=BG,
-                                font=("Arial", 18, "bold"))
-        self.q_label.pack(anchor="w", padx=20)
+                                font=("Arial", 20, "bold"))
+        self.q_label.pack(anchor="w", padx=12)
 
         main = tk.Frame(self.root, bg=BG)
         main.pack(expand=True)
@@ -217,7 +217,7 @@ class QuizApp:
                 text="",
                 variable=self.selected,
                 indicatoron=0,
-                width=25,
+                width=35,
                 font=("Arial", 12),
                 bg=BTN,
                 fg=WHITE,
