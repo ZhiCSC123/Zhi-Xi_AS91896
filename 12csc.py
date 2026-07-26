@@ -11,7 +11,7 @@ quiz_data = [
 
     {
         "q": "What section of a car is this?",
-        "image_path": r"IMAGE\rim.png",
+        "image_path": r"IMAGE\rims.png",
         "options": ["Engine", "Accelerator", "Tyre", "Rim"],
         "a": "Rim"
     },
@@ -25,7 +25,7 @@ quiz_data = [
 
     {
         "q": "What section of a car is this?",
-        "image_path": r"IMAGE\coolant.png",
+        "image_path": r"IMAGE\cooltank.png",
         "options": ["Engine", "Accelerator", "Coolant Tank", "Oil Tank"],
         "a": "Coolant Tank"
     },
@@ -335,6 +335,19 @@ class QuizApp:
         ).pack(pady=20)
 
         self.rounded_button(frame, "Play Again", self.start_screen)
+
+        self.help_screen()
+
+    def help_screen(self):
+        self.clear()
+
+        tk.Label(
+            frame,
+            text="You Passed!",
+            fg=WHITE,
+            bg=BG,
+            font=("Arial", 28, "bold")
+        ).pack()
 
 
 # runs the app
