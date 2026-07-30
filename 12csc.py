@@ -336,20 +336,6 @@ class QuizApp:
 
         self.rounded_button(frame, "Play Again", self.start_screen)
 
-        self.help_screen()
-
-    def help_screen(self):
-        self.clear()
-
-        tk.Label(
-            frame,
-            text="You Passed!",
-            fg=WHITE,
-            bg=BG,
-            font=("Arial", 28, "bold")
-        ).pack()
-
-
 # runs the app
 root = tk.Tk()
 app = QuizApp(root)
