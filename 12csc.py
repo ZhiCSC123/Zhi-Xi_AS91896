@@ -1,4 +1,6 @@
 import tkinter as tk
+import re
+from PIL import Image, ImageTk
 
 # list of questions in the quiz
 quiz_data = [
@@ -11,7 +13,7 @@ quiz_data = [
 
     {
         "q": "What section of a car is this?",
-        "image_path": r"IMAGE\rims.png",
+        "image_path": r"IMAGE\rim.png",
         "options": ["Engine", "Accelerator", "Tyre", "Rim"],
         "a": "Rim"
     },
@@ -25,14 +27,14 @@ quiz_data = [
 
     {
         "q": "What section of a car is this?",
-        "image_path": r"IMAGE\cooltank.png",
+        "image_path": r"IMAGE\coolant.png",
         "options": ["Engine", "Accelerator", "Coolant Tank", "Oil Tank"],
         "a": "Coolant Tank"
     },
 
     {
         "q": "What section of a car is this?",
-        "image_path": r"IMAGE\oil.png",
+        "image_path": r"IMAGE\oilpour.png",
         "options": ["Engine", "Coolant", "Oil Tank", "Dipstick"],
         "a": "Oil Tank"
     },
@@ -48,7 +50,7 @@ quiz_data = [
     {
         "q": "How do you know if you need to replace your coolant?",
         "image_path": r"IMAGE\coolantlvls.png",
-        "options": ["Dashboard displays overheating symbol", "When the dashboard displays TCL/TCS",
+        "options": ["Dashboard displays overheating symbol", "The dashboard displays TCL/TCS",
                     "Temperature on dashboard rises", "When the car stops running"],
         "a": "Temperature on dashboard rises"
     },
@@ -56,24 +58,24 @@ quiz_data = [
     {
         "q": "When should you replace your car battery?",
         "image_path": r"IMAGE\carbat.png",
-        "options": ["When the lights start to go dim", "When you have hit the 5 year mark",
-                    "When your battery starts whistling high pitched noises",
-                    "If your headlights are way too bright at night"],
-        "a": "When the lights start to go dim"
+        "options": ["Lights start to go dim", "When you have hit the 5 year mark",
+                    "Battery starts making high pitched noises",
+                    "Headlights are way too bright at night"],
+        "a": "Lights start to go dim"
     },
 
     {
         "q": "How do you know if you need to replace your oil",
         "image_path": r"IMAGE\oilpour.png",
-        "options": ["If the dipstick turns black", "When your engine starts making knocking sounds",
-                    "The sticker on the windshield", "When the oil on the dip stick goes below the marked line"],
-        "a": "When the oil on the dip stick goes below the marked line"
+        "options": ["If the dipstick turns black", "Engine starts making knocking sounds",
+                    "The sticker on the windshield", "Oil goes below the marked line"],
+        "a": "Oil goes below the marked line"
     },
 
     {
         "q": "What is the purpose of a muffler?",
-        "image_path": r"IMAGE\muffler.png",
-        "options": ["Regulate exhaust flow", "Acts as a filter...", "It is needed to prevent a car from overheating",
+        "image_path": r"IMAGE\mufflers.png",
+        "options": ["Regulate exhaust flow", "Acts as a filter...", "To prevent a car from overheating",
                     "Maximize engine power"],
         "a": "Regulate exhaust flow"
     },
@@ -91,6 +93,45 @@ WHITE = "white"
 
 # app
 class QuizApp:
+
+
+    # the help screen
+    def help_screen(self):
+        self.clear()
+
+        frame = tk.Frame(self.root, bg=BG)
+        frame.pack(expand=True)
+
+        tk.Label(
+            frame,
+            text="Quiz Instructions",
+            fg=WHITE,
+            bg=BG,
+            font=("Arial", 28, "bold")
+        ).pack(pady=20)
+
+        # instructions in the quiz
+        instructions = (
+            "Welcome to the Ultimate Car Quiz!\n\n"
+            "• There are 10 multiple-choice questions.\n"
+            "• Each question has one correct answer.\n"
+            "• Select an answer before pressing Submit.\n"
+            "• You need at least 7/10 to pass.\n"
+            "• Your progress is shown by the progress bar.\n\n"
+            "Good luck!"
+        )
+
+        tk.Label(
+            frame,
+            text=instructions,
+            fg=WHITE,
+            bg=BG,
+            font=("Arial", 14),
+            justify="left",
+            wraplength=650
+        ).pack(pady=20)
+        # begin quiz button for the users to press to start playing the quiz
+        self.rounded_button(frame, "Begin Quiz", self.quiz_screen)
 
     # sets up the start screen
 
@@ -166,22 +207,49 @@ class QuizApp:
         self.entry.bind("<FocusOut>", lambda e: self.entry.insert(0, placeholder)
         if self.entry.get() == "" else None)
 
+        self.error_label = tk.Label(
+            frame,
+            text="",
+            fg=RED,
+            bg=BG,
+            font=("Arial", 11, "bold")
+        )
+        self.error_label.pack(pady=(5, 10))
+
         self.rounded_button(frame, "Start Quiz", self.start_quiz)
 
     # start quiz
 
     def start_quiz(self):
-        self.username = self.entry.get()
+        self.username = self.entry.get().strip()
 
-        if not self.username or self.username == "Enter Your Username:":
+        # clear any previous error
+        self.error_label.config(text="")
+
+        # empty username
+        if self.username == "" or self.username == "Enter Your Username:":
+            self.error_label.config(text="Please enter a username")
+            return
+
+        # must be at least 2 letters
+        if len(self.username) < 2:
+            self.error_label.config(
+                text="Username must be at least 2 characters"
+            )
+            return
+
+        # only letters allowed
+        if not re.fullmatch(r"[A-Za-z]+", self.username):
+            self.error_label.config(
+                text="Username cannot contain special characters or numbers"
+            )
             return
 
         self.q_index = 0
         self.score = 0
         self.answers = []
 
-        # main page
-        self.quiz_screen()
+        self.help_screen()
 
     def quiz_screen(self):
         self.clear()
@@ -241,7 +309,7 @@ class QuizApp:
                 text="",
                 variable=self.selected,
                 indicatoron=0,
-                width=30,
+                width=35,
                 font=("Arial", 12),
                 bg=BTN,
                 fg=WHITE,
@@ -254,6 +322,16 @@ class QuizApp:
             btn.pack(fill="x", pady=8)
             self.option_buttons.append(btn)
 
+        # error message for unanswered questions
+        self.submit_error = tk.Label(
+            right,
+            text="",
+            fg=RED,
+            bg=BG,
+            font=("Arial", 11, "bold")
+        )
+        self.submit_error.pack(pady=5)
+
         # submit button
         self.rounded_button(right, "Submit", self.next_q)
 
@@ -263,6 +341,9 @@ class QuizApp:
     def load_q(self):
         q = quiz_data[self.q_index]
 
+        self.selected.set("")
+        self.submit_error.config(text="")
+
         self.q_label.config(
             text=f"Question {self.q_index + 1} of {len(quiz_data)}\n{q['q']}"
         )
@@ -270,13 +351,15 @@ class QuizApp:
         # load image
         if "image_path" in q:
             try:
-                img = tk.PhotoImage(file=q["image_path"])
+                # loads image
+                img = Image.open(q["image_path"])
 
-                # force scale down (adjust numbers as needed)
-                # bigger numbers = smaller image
-                img = img.subsample(2, 2)
+                # resizes every image to the same size
+                img = img.resize((350, 250), Image.LANCZOS)
 
-                self.photo = img
+                # converts for tkinter
+                self.photo = ImageTk.PhotoImage(img)
+
                 self.image_label.config(image=self.photo)
                 self.image_label.image = self.photo
 
@@ -293,8 +376,16 @@ class QuizApp:
 
     # switches to the next question
     def next_q(self):
-        if not self.selected.get():
+
+        # check if an answer was selected
+        if self.selected.get() == "":
+            self.submit_error.config(
+                text="Please select an answer before continuing."
+            )
             return
+
+        # remove error message
+        self.submit_error.config(text="")
 
         ans = self.selected.get()
         self.answers.append(ans)
@@ -306,6 +397,7 @@ class QuizApp:
 
         if self.q_index < len(quiz_data):
             self.load_q()
+
         else:
             self.result_screen()
 
@@ -324,6 +416,14 @@ class QuizApp:
             fg=WHITE,
             bg=BG,
             font=("Arial", 28, "bold")
+        ).pack(pady=5)
+
+        tk.Label(
+            frame,
+            text="Congratulations!" if passed else "Better luck next time!",
+            fg=WHITE,
+            bg=BG,
+            font=("Arial", 12)
         ).pack()
 
         tk.Label(
@@ -331,11 +431,73 @@ class QuizApp:
             text=f"{self.username}, Score: {self.score}/10",
             fg=WHITE,
             bg=BG,
-            font=("Arial", 18)
-        ).pack(pady=20)
+            font=("Arial", 18, "bold")
+        ).pack(pady=10)
 
-        self.rounded_button(frame, "Play Again", self.start_screen)
+        # answer result box
 
+        results_box = tk.Frame(
+            frame,
+            bg=CARD,
+            padx=20,
+            pady=15
+        )
+
+        results_box.pack(pady=15)
+
+        #two columns like the example image
+        left_column = tk.Frame(results_box, bg=CARD)
+        left_column.grid(row=0, column=0, padx=20)
+
+        right_column = tk.Frame(results_box, bg=CARD)
+        right_column.grid(row=0, column=1, padx=20)
+
+        for i in range(len(quiz_data)):
+
+            if self.answers[i] == quiz_data[i]["a"]:
+                colour = GREEN
+            else:
+                colour = RED
+
+            # split questions into two columns
+            if i < 5:
+                parent = left_column
+            else:
+                parent = right_column
+
+            row = tk.Frame(parent, bg=CARD)
+            row.pack(anchor="w", pady=3)
+
+            # coloured circle
+            circle = tk.Canvas(
+                row,
+                width=12,
+                height=12,
+                bg=CARD,
+                highlightthickness=0
+            )
+
+            circle.pack(side="left", padx=5)
+
+            circle.create_oval(
+                2, 2, 12, 12,
+                fill=colour,
+                outline=colour
+            )
+
+            tk.Label(
+                row,
+                text=f"Question {i + 1}",
+                fg=WHITE,
+                bg=CARD,
+                font=("Arial", 11)
+            ).pack(side="left")
+
+        # keep existing button
+        self.rounded_button(
+            frame,
+            "Back to Menu", self.start_screen)
+        self.rounded_button(frame, "Quit", self.root.destroy)
 # runs the app
 root = tk.Tk()
 app = QuizApp(root)
