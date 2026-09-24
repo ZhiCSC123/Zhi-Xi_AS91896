@@ -6,42 +6,42 @@ from PIL import Image, ImageTk
 quiz_data = [
     {
         "q": "What section of a car is this?",
-        "image_path": r"IMAGE\transmission.jpg",
+        "image_path": r"transmission.jpg",
         "options": ["Transmission", "Brake Pad", "Engine", "Exhaust"],
         "a": "Transmission"
     },
 
     {
         "q": "What section of a car is this?",
-        "image_path": r"IMAGE\rim.png",
+        "image_path": r"rim.png",
         "options": ["Engine", "Accelerator", "Tyre", "Rim"],
         "a": "Rim"
     },
 
     {
         "q": "What section of a car is this?",
-        "image_path": r"IMAGE\footbrake.png",
+        "image_path": r"footbrake.png",
         "options": ["Brake", "Foot Brake", "Accelerator", "Hand Brake"],
         "a": "Foot Brake"
     },
 
     {
         "q": "What section of a car is this?",
-        "image_path": r"IMAGE\coolant.png",
+        "image_path": r"coolant.png",
         "options": ["Engine", "Accelerator", "Coolant Tank", "Oil Tank"],
         "a": "Coolant Tank"
     },
 
     {
         "q": "What section of a car is this?",
-        "image_path": r"IMAGE\oilpour.png",
+        "image_path": r"oilpour.png",
         "options": ["Engine", "Coolant", "Oil Tank", "Dipstick"],
         "a": "Oil Tank"
     },
 
     {
         "q": "What is a Dipstick used for?",
-        "image_path": r"IMAGE\oildipstick.png",
+        "image_path": r"oildipstick.png",
         "options": ["To check coolant levels", "To check oil levels", "To jump start the car",
                     "To check water tank levels"],
         "a": "To check oil levels"
@@ -49,7 +49,7 @@ quiz_data = [
 
     {
         "q": "How do you know if you need to replace your coolant?",
-        "image_path": r"IMAGE\coolantlvls.png",
+        "image_path": r"coolantlvls.png",
         "options": ["Dashboard displays overheating symbol", "The dashboard displays TCL/TCS",
                     "Temperature on dashboard rises", "When the car stops running"],
         "a": "Temperature on dashboard rises"
@@ -57,7 +57,7 @@ quiz_data = [
 
     {
         "q": "When should you replace your car battery?",
-        "image_path": r"IMAGE\carbat.png",
+        "image_path": r"carbat.png",
         "options": ["Lights start to go dim", "When you have hit the 5 year mark",
                     "Battery starts making high pitched noises",
                     "Headlights are way too bright at night"],
@@ -66,7 +66,7 @@ quiz_data = [
 
     {
         "q": "How do you know if you need to replace your oil",
-        "image_path": r"IMAGE\oilpour.png",
+        "image_path": r"oilpour.png",
         "options": ["If the dipstick turns black", "Engine starts making knocking sounds",
                     "The sticker on the windshield", "Oil goes below the marked line"],
         "a": "Oil goes below the marked line"
@@ -74,7 +74,7 @@ quiz_data = [
 
     {
         "q": "What is the purpose of a muffler?",
-        "image_path": r"IMAGE\mufflers.png",
+        "image_path": r"mufflers.png",
         "options": ["Regulate exhaust flow", "Acts as a filter...", "To prevent a car from overheating",
                     "Maximize engine power"],
         "a": "Regulate exhaust flow"
